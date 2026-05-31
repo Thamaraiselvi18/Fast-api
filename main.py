@@ -9,7 +9,7 @@ user = {
 
 class User(BaseModel):
     name: str
-    age: int
+    dept: str
 
 @app.get("/")
 def get_user():
@@ -18,8 +18,15 @@ def get_user():
 @app.put("/user")
 def update_user(updated_user: User):
     user["name"] = updated_user.name
-    user["age"] = updated_user.age
     return {
         "message": "User Updated Successfully",
+        "user": user
+    }
+
+@app.put("/user/dept")
+def update_user(updated_user: User):
+    user["dept"] = updated_user.dept
+    return {
+        "message": "User Department Updated Successfully",
         "user": user
     }
